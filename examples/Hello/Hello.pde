@@ -1,19 +1,22 @@
-import template.library.*;
+import pixelblaze.library.*;
 
-HelloLibrary hello;
+Pixelblaze pb;
+float bri;
+
 
 void setup() {
   size(400,400);
   smooth();
   
-  hello = new HelloLibrary(this);
+  pb = new Pixelblaze(this,"ws://192.168.1.15:81");
+  bri = 1.0;
   
-  PFont font = createFont("",40);
-  textFont(font);
+  pb.getHardwareConfig();
+  
 }
 
 void draw() {
-  background(0);
-  fill(255);
-  text(hello.sayHello(), 40, 200);
+  pb.setBrightness(bri);
+  bri = (bri > 0.8) ? 0.125 : 1.0;
+  delay(500); 
 }
